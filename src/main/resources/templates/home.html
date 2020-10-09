@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<!--/* Note the xmlns:* here are completely optional and only meant to     */-->
+<!--/* avoid IDEs from complaining about tags/attributes they may not know */-->
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:score="http://thymeleafexamples"
+>
+  <head>
+    <title>CoronaVirusTrackerApplication</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+      .headers{
+        font-size: x-large;
+        font-weight: 500;
+        color:#1A73E8;
+        
+        
+      }
+      .dangerDatas{
+        color: red;
+        font-weight: bold;
+        font-size: 1em;
+      }
+      .datas{
+        color:green;
+        font-weight: bold;
+        font-size: 1em;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <header><center><h1>World Corona Meter</h1></center></header>
+    <hr>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 headers" align="center">Total Cases in World <br>
+          <span th:text="${totalCasesInWorld}" class="dangerDatas"></span></div>
+        <div class="col-md-6 headers" align="center">Total Recovered in World<br>
+        <ceneter><span th:text="${totalRecoveredInWorld}" class="datas"></span></ceneter></div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 headers" align="center">Total Active Cases
+          <br>
+          <span th:text="${totalActiveCases}"  class="dangerDatas"></span>
+        </div>
+        <div class="col-md-6 headers" align="center">Total Deaths in World
+          <br>
+          <span th:text="${totalDeaths}"  class="dangerDatas"></span>
+        </div>
+      </div>
+      <hr>
+      <a align="center" href="https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/prevention.html">Click Here to know the Preventive measure you Should Take</a>
+    </div>
+    
+    <hr>
+    <div class="container">
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Country</th>
+            <th>Total Cases</th>
+            <th>Total Recovered</th>
+            <th>Total Death</th>
+            <th>New Cases</th>
+            <th>New Recovered</th>
+            <th>New Death</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="t : ${locationStats}"  >
+            <td th:text="${t.country}" style="color:blueviolet; font-weight: bold;"></td>
+            <td ><span th:text="${t.totalCases}" style="color:red ; font-weight: bold;"></span></td>
+            <td ><span th:text="${t.totalRecovered}" style="color:green ;font-weight: bold;">  </td>
+            <td ><span th:text="${t.totalDeaths}" style="color:red ;font-weight: bold;"> </span></td>
+            <td ><span th:text="${t.newCases}" style="color:red;font-weight: bold;">   </span><i class="fa fa-arrow-up" style="color: red; font-weight: lighter;"></i></td>
+            <td ><span th:text="${t.newRecovered}" style="color:green ;font-weight: bold;"> </span><i class="fa fa-arrow-up" style="color: green;font-weight: lighter;"></i> </td>
+            <td > <span th:text="${t.newDeath}" style="color:red ;font-weight: bold;" >  </span><i class="fa fa-arrow-up" style="color:red; font-weight: lighter; padding-left: 3px;"></i></td>
+          </tr>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </body>
+</html>
